@@ -1,5 +1,3 @@
-TODO List - 
-
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -10,10 +8,24 @@ TODO List -
 ###############################################################################
 
 1. Consider making this a markdown file - STATUS - OPEN 
+
 2. Add the name of the file to the heading of the bash script STATUS - OPEN
+
 3. Find a way to format the file to make it easily grep-able in order to 
    check Status - STATUS - OPEN
+
 4. Segregate certain parts of the bash script. For example - might not want to 
    install Anaconda. STATUS - OPEN
+
 5. Consider Making it Miniconda - STATUS - OPEN
+
 6. Testing on the specified OSs still needs to be done - STATUS - OPEN
+
+7. Should probably go by Package Manager yum vs apt instead of distribution 
+   STATUS - OPEN
+
+8. Add command flags. At least a -h - STATUS - OPEN
+
+9. Should be able to dynamically probe the conda page for the newest release
+   STATUS - OPEN
+   
