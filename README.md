@@ -24,4 +24,4 @@ Stuff like
  - bash
  - sha256sum
  - grep
- etc
+etc
