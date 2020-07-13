@@ -19,6 +19,9 @@ filename                                              |  description
 src/configure_new_vm.sh                               |  Main script
 
 ## Dependencies
-The only dependencies needed should be already there in the linux distribution
+The only dependencies needed should be already there in the linux distribution.
+Stuff like
  - bash
  - sha256sum
+ - grep
+ etc
