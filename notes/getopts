@@ -1,0 +1,9 @@
+Versions of getopt(s) ->
+* Should we use getopt or getopt(s) for command line flag parsing?
+  or should we use our own parser?
+* here's a nice article on the advantages disadvantages
+
+The availibility of getopt(s) :
+1) on my ubuntu - For some reason there is only getopt and not getopts
+2) Amazon Linux - has both getopt and getopts
+3) 
