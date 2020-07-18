@@ -1,10 +1,11 @@
 #!/bin/bash
 
 ###############################################################################
-
+#
 # Change History 
 # July-12-2020 - Emanuel Acosta - Creation
-
+# July-14-2020 - Emanuel Acosta - added command line flags 
+#
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -25,6 +26,13 @@
 ################################################################################
 ################################################################################
 
+INSTALL_ANACONDA="False"
+USAGE="
+This script installs gcc,g++,make,git,python3,and optionally Anaconda.
+
+-A           Anaconda will be installed 
+-h           print this help message and exit
+"
 
 cd $HOME
 ## tell bash that it should exit the script if any statement returns a non-true return value
@@ -59,6 +67,26 @@ then
 	echo -e "OS could not be identified"
 	exit
 fi
+
+
+# Let's parse flags with getopts
+
+
+while getopts ":hA" opt; do
+  case ${opt} in
+    h ) # process option h
+        echo "$USAGE"
+	exit 0
+      ;;
+    A ) # process option A
+        INSTALL_ANACONDA="True"
+      ;;
+    \? ) echo "Usage: cmd [-h] [-A]"
+      ;;
+  esac
+done
+
+shift $((OPTIND -1))
 
 ## update command updates the list of available packages
 ## and their versions 
@@ -151,6 +179,8 @@ then
 
 fi
 
+if [[ $INSTALL_ANACONDA = "True" ]]
+then
 
 ## Time to install Anaconda
 ## We need to make sure we have wget
@@ -202,5 +232,6 @@ echo -e "Anaconda Successfully Installed"
 echo "Updating all packages just in case"
 conda update conda -y --update-all
 
+fi
 
-exit
+exit 0

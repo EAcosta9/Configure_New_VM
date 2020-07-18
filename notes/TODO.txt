@@ -28,4 +28,6 @@
 
 9. Should be able to dynamically probe the conda page for the newest release
    STATUS - OPEN
-   
+
+10. saw this "set -o errexit -o pipefail -o noclobber -o nounset" -> Investigate
+    what the flags mean and if they should be included in this script - STATUS - OPEN.  
