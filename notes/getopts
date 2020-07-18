@@ -7,3 +7,9 @@ The availibility of getopt(s) :
 1) on my ubuntu - For some reason there is only getopt and not getopts
 2) Amazon Linux - has both getopt and getopts
 3) 
+
+Installing getopt - 
+install 
+- util-linux in Amazon Linux
+- util-linux in Ubuntu (Personal. need to double check on EC2 instance)
+- 
