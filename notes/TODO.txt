@@ -29,3 +29,5 @@
 9. Should be able to dynamically probe the conda page for the newest release
    STATUS - OPEN
    
+10 - Amazon Linux doesn't have the same python3 package as the other linues
+     STATUS - OPEN
