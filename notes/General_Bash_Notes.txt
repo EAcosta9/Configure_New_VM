@@ -1,0 +1,3 @@
+= vs == vs -eq
+
+This is a good stacakoverflow answer : https://unix.stackexchange.com/questions/168284/unix-test-when-to-use-eq-vs-vs-in-test-commands
