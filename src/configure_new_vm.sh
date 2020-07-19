@@ -1,10 +1,11 @@
 #!/bin/bash
 
 ###############################################################################
-
+#
 # Change History 
 # July-12-2020 - Emanuel Acosta - Creation
-
+# July-14-2020 - Emanuel Acosta - Added command line flags 
+# July-18-2020 - Emanuel Acosta - Set Environment Varible for Anaconda
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -25,6 +26,13 @@
 ################################################################################
 ################################################################################
 
+INSTALL_ANACONDA="False"
+USAGE="
+This script installs gcc,g++,make,git,python3,and optionally Anaconda.
+
+-A           Anaconda will be installed 
+-h           print this help message and exit
+"
 
 cd $HOME
 ## tell bash that it should exit the script if any statement returns a non-true return value
@@ -59,6 +67,26 @@ then
 	echo -e "OS could not be identified"
 	exit
 fi
+
+
+# Let's parse flags with getopts
+
+
+while getopts ":hA" opt; do
+  case ${opt} in
+    h ) # process option h
+        echo "$USAGE"
+	exit 0
+      ;;
+    A ) # process option A
+        INSTALL_ANACONDA="True"
+      ;;
+    \? ) echo "Usage: cmd [-h] [-A]"
+      ;;
+  esac
+done
+
+shift $((OPTIND -1))
 
 ## update command updates the list of available packages
 ## and their versions 
@@ -142,15 +170,17 @@ echo -e "\nInstalling python 3\n"
 if [[ $linux_dist = "Ubuntu" ]]
 then
 	sudo apt install python3.8-dev python3-pip -y
-	sudo apt install python-crypto-doc gnome-keyring libkf5wallet-bin gir1.2-gnomekeyring-1.0 python-secretstorage-doc python-setuptools-doc python3.7-venv python3.7-doc binfmt-support -y
+
 
 elif [[    $linux_dist = "Red_Hat"    ]]
 then
-	sudo yum install python38-devel.x86_64
-        sudo yum install python-crypto-doc gnome-keyring libkf5wallet-bin gir1.2-gnomekeyring-1.0 python-secretstorage-doc python-setuptools-doc python3.7-venv python3.7-doc binfmt-support -y
+	sudo yum install python38-devel.x86_64 -y
+
 
 fi
 
+if [[ $INSTALL_ANACONDA = "True" ]]
+then
 
 ## Time to install Anaconda
 ## We need to make sure we have wget
@@ -200,7 +230,15 @@ rm ${FILE}
 
 echo -e "Anaconda Successfully Installed"
 echo "Updating all packages just in case"
+
+## Add Anaconda to the .bashrc
+PATH_TO_ANACONDA_BIN=${PREFIX}/bin
+
+export PATH=PATH_TO_ANACONDA_BIN:$PATH
+source ~/.bash_profile
+
 conda update conda -y --update-all
 
+fi
 
-exit
+exit 0
