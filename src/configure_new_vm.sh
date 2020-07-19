@@ -235,7 +235,19 @@ echo "Updating all packages just in case"
 PATH_TO_ANACONDA_BIN=${PREFIX}/bin
 
 export PATH=PATH_TO_ANACONDA_BIN:$PATH
-source ~/.bash_profile
+
+
+echo -e "Installing wget"
+if [[ $linux_dist = "Ubuntu" ]]
+then
+	source ~/.profile
+
+elif [[    $linux_dist = "Red_Hat"    ]]
+then
+        source ~/.bash_profile
+
+fi
+
 
 conda update conda -y --update-all
 
