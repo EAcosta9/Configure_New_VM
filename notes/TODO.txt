@@ -33,4 +33,6 @@
     what the flags mean and if they should be included in this script - STATUS - OPEN.
 
 11. Error - conda : command not found -> solution -> need to update .bashrc - STATUS - OPEN
-  
+     
+12. Amazon Linux doesn't have the same python3 package as the other linues
+     STATUS - OPEN
