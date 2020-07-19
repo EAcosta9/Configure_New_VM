@@ -4,8 +4,8 @@
 #
 # Change History 
 # July-12-2020 - Emanuel Acosta - Creation
-# July-14-2020 - Emanuel Acosta - added command line flags 
-#
+# July-14-2020 - Emanuel Acosta - Added command line flags 
+# July-18-2020 - Emanuel Acosta - Set Environment Varible for Anaconda
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -170,12 +170,12 @@ echo -e "\nInstalling python 3\n"
 if [[ $linux_dist = "Ubuntu" ]]
 then
 	sudo apt install python3.8-dev python3-pip -y
-	sudo apt install python-crypto-doc gnome-keyring libkf5wallet-bin gir1.2-gnomekeyring-1.0 python-secretstorage-doc python-setuptools-doc python3.7-venv python3.7-doc binfmt-support -y
+
 
 elif [[    $linux_dist = "Red_Hat"    ]]
 then
-	sudo yum install python38-devel.x86_64
-        sudo yum install python-crypto-doc gnome-keyring libkf5wallet-bin gir1.2-gnomekeyring-1.0 python-secretstorage-doc python-setuptools-doc python3.7-venv python3.7-doc binfmt-support -y
+	sudo yum install python38-devel.x86_64 -y
+
 
 fi
 
@@ -230,6 +230,13 @@ rm ${FILE}
 
 echo -e "Anaconda Successfully Installed"
 echo "Updating all packages just in case"
+
+## Add Anaconda to the .bashrc
+PATH_TO_ANACONDA_BIN=${PREFIX}/bin
+
+export PATH=PATH_TO_ANACONDA_BIN:$PATH
+source ~/.bash_profile
+
 conda update conda -y --update-all
 
 fi
