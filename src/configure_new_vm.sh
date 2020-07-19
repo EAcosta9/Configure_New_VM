@@ -6,6 +6,7 @@
 # July-12-2020 - Emanuel Acosta - Creation
 # July-14-2020 - Emanuel Acosta - Added command line flags 
 # July-18-2020 - Emanuel Acosta - Set Environment Varible for Anaconda
+# July-18-2020 - EManuel Acosta - Fix Environment variable across distributions
 ###############################################################################
 ###############################################################################
 ###############################################################################
