@@ -6,7 +6,7 @@
 # July-12-2020 - Emanuel Acosta - Creation
 # July-14-2020 - Emanuel Acosta - Added command line flags 
 # July-18-2020 - Emanuel Acosta - Set Environment Varible for Anaconda
-# July-18-2020 - EManuel Acosta - Fix Environment variable across distributions
+# August-11-2020 - Emanuel Acosta - Fix Environment variable problem
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -184,17 +184,18 @@ if [[ $INSTALL_ANACONDA = "True" ]]
 then
 
 ## Time to install Anaconda
-## We need to make sure we have wget
+## We need to make sure we have either wget or curl 
 
-echo -e "Installing wget"
+
+
 if [[ $linux_dist = "Ubuntu" ]]
 then
         sudo apt-get install wget -y
 elif [[    $linux_dist = "Red_Hat"    ]]
 then
         sudo yum install wget -y
-
 fi
+
 
 
 ##Anaconda bash script
@@ -227,30 +228,20 @@ fi
 ##              it is expected the license terms are agreed upon
 ##-p PREFIX    install prefix, defaults to $PREFIX, must not contain spaces.
 bash $FILE -b -p $PREFIX
+
+
+## Adding conda to the .bashrc
+source $PREFIX/bin/activate
+conda init
+conda update conda -y --update-all
+
 rm ${FILE}
 
 echo -e "Anaconda Successfully Installed"
-echo "Updating all packages just in case"
-
-## Add Anaconda to the .bashrc
-PATH_TO_ANACONDA_BIN=${PREFIX}/bin
-
-export PATH=PATH_TO_ANACONDA_BIN:$PATH
+echo -e "In order to enable conda related commands please run"
+echo -e "source ~/.bashrc \n"
 
 
-echo -e "Installing wget"
-if [[ $linux_dist = "Ubuntu" ]]
-then
-	source ~/.profile
-
-elif [[    $linux_dist = "Red_Hat"    ]]
-then
-        source ~/.bash_profile
-
-fi
-
-
-conda update conda -y --update-all
 
 fi
 
