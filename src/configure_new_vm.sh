@@ -6,7 +6,8 @@
 # July-12-2020 - Emanuel Acosta - Creation
 # July-14-2020 - Emanuel Acosta - Added command line flags 
 # July-18-2020 - Emanuel Acosta - Set Environment Varible for Anaconda
-# August-11-2020 - Emanuel Acosta - Fix Environment variable problem
+# July-18-2020 - EManuel Acosta - Fix Environment Variables problems and added
+#                                 curl
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -186,7 +187,21 @@ then
 ## Time to install Anaconda
 ## We need to make sure we have either wget or curl 
 
+##Anaconda bash script
+FILE=Anaconda3-2020.02-Linux-x86_64.sh
+## Complete list of hashes can be found at 
+## https://docs.anaconda.com/anaconda/install/hashes/all/
+HASH="2b9f088b2022edb474915d9f69a803d6449d5fdb4c303041f60ac4aefcc208bb"
+# Path to which Anaconda will be installed
+PREFIX=${HOME}/anaconda3
 
+if command -v curl &> /dev/null 
+then
+	curl https://repo.anaconda.com/archive/$FILE
+elif command -v wget &> /dev/null 
+then
+	wget -v https://repo.anaconda.com/archive/$FILE
+else
 
 if [[ $linux_dist = "Ubuntu" ]]
 then
@@ -195,20 +210,8 @@ elif [[    $linux_dist = "Red_Hat"    ]]
 then
         sudo yum install wget -y
 fi
-
-
-
-##Anaconda bash script
-FILE=Anaconda3-2020.02-Linux-x86_64.sh
-
-## Complete list of hashes can be found at 
-## https://docs.anaconda.com/anaconda/install/hashes/all/
-HASH="2b9f088b2022edb474915d9f69a803d6449d5fdb4c303041f60ac4aefcc208bb"
-
-# Path to which Anaconda will be installed
-PREFIX=${HOME}/anaconda3
-
 wget -v https://repo.anaconda.com/archive/$FILE
+fi
 
 ## Time to verify data integrity
 echo -e "Verifying data integrity. The SHA-256 hash should be "
